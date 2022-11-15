@@ -1,0 +1,167 @@
+﻿@model SampleCore.Core.Model.Resume
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<style>
+    .RegistrationForm {
+        margin: 0px 383px 10px 341px;
+        padding: 0px 0px 25px 0px;
+        border: 4px solid black;
+        border-radius: 25px;
+        padding-left: 50px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: white;
+    }
+
+    body {
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIl8mf4repF5E837bY9zkRGhRINiuETf09_w&usqp=CAU');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .error {
+        color: red;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .Hide {
+        display: none;
+    }
+
+    .required {
+        color: red;
+    }
+</style>
+<body>
+    
+    @using (Html.BeginForm("FileUpload", "ResumeFile", FormMethod.Post, new { @id = "RestrictionForm", enctype = "multipart/form-data" }))
+    {
+        <div class="RegistrationForm">
+            @Html.HiddenFor(a=>a.ResumeId)
+           
+                <h3 align="center">
+                    <i class="fa fa-address-card" style="font-size:24px"></i> Resume Information Details
+                </h3>
+                <div>
+                    <h3>Name<span class="required">*</span></h3>
+                    <i class="fa fa-user" style="font-size:20px;"></i>
+                    @Html.TextBoxFor(a=>a.Name,new{ placeholder="Name",maxlength="15",style="border:none;width:50%"})
+                    <hr style="width:100%;text-align:left;margin-left:0">
+                </div>
+                <div>
+                <h3><label>Age<span class="required">*</span> &emsp; &emsp;</label></h3>
+                    <i class="fa fa-child" style="font-size:20px"></i>
+                @Html.TextBoxFor((a=>a.Age),new{placeholder="Age",maxlength="3",style=" border:none;width:50%"})
+                    <hr style="width:100%;text-align:left;margin-left:0">
+                </div>
+                <div>
+                <h3>Gender<span class="required">*</span></h3>
+                    <i class="fa fa-venus-double" style="font-size:24px"></i>
+                    @Html.RadioButtonFor(a => a.Gender,"Male")Male
+                    @Html.RadioButtonFor(a => a.Gender,"Female")Female
+                    @Html.RadioButtonFor(a => a.Gender,"Others")Others
+                </div>
+                <div>
+                <h3><label>Email<span class="required">*</span></label></h3>
+                    <i class='fa fa-envelope' style='font-size:20px'></i>
+                @Html.TextBoxFor((a=>a.Email),new{placeholder="Email",type="email",maxlength="20",style="border:none;width:50%"})
+                    <hr style="width:100%;text-align:left;margin-left:0">
+                </div>
+                <div>
+                <h3><label>Location<span class="required">*</span></label></h3>
+                    <i class='fas fa-map-marker-alt' style='font-size:20px'></i>
+                @Html.TextBoxFor((a=>a.Location),new{placeholder="Location",style="border:none;width:50%"})
+                    <hr style="width:100%;text-align:left;margin-left:0">
+                </div>
+            <input type="file" name="file"  />
+                 <div>
+                <button style="border-radius:25px; background-color:indianred;margin-left:50%" type="submit"> @Html.ActionLink("Back to List","ReadList") </button>
+                <button style="border-radius:25px; background-color:khaki;float:right;margin-right:80px" type="submit">Submit</button><br/><br/>
+            </div>
+        </div>
+    }
+</body>
+@*<form asp-controller="ResumeFile" asp-action="UploadFile" method="post"
+      
+
+    <input type="file" name="file" />
+    <button type="submit">Upload File</button>
+</form>*@
+<script>
+    $().ready(function () {
+
+        $("#RestrictionForm").validate({
+            // in 'rules' user have to specify all the constraints for respective fields
+            rules: {
+                Name: {
+                    required: true,
+                    lettersonly: true,
+                    maxlength: 15
+                },
+               
+                Age: {
+                    required: true,
+                    number: true,
+                    maxlength: 3
+                },
+                Email: {
+                    required:true
+                },
+                Location: {
+                    required: true,
+                    lettersonly: true,
+                    maxlength: 10
+                },
+                file:{
+                    required: true,
+                    extension: "xlsx|xls|xlsm"
+                }
+                
+            },
+        // in 'messages' user have to specify message as per rules
+        messages: {
+                Name: {
+            required: " Kindly enter Name",
+            lettersonly: " Only alphabets are valid",
+            maxlength: " Must Not Exceed 15"
+        },
+        
+        Age: {
+            required: " kindly enter your Age",
+            maxlength: " Must not exceed 3 "
+        },
+        
+        Location: {
+        required: " Kindly enter Location",
+        lettersonly: " Only alphabets are valid",
+        maxlength: " Must Not Exceed 10"
+        },
+        file:{
+            extension:"xlsx,xls-only These files are allowed"
+        }
+
+    },
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

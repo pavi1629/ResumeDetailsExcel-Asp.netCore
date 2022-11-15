@@ -1,0 +1,52 @@
+﻿
+@model SampleCore.Core.Model.Resume
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<table class="table table-bordered table-striped table-light table-hover">
+    <thead>
+        <tr>            
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model =>model.sslc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hsc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CGPA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Interest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skills)
+            </th>
+        </tr>
+        <tr>            
+            <td>
+                @Html.DisplayFor(a => a.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(a =>a.sslc)
+            </td>
+            <td>
+                @Html.DisplayFor(a => a.Hsc)
+            </td>
+            <td>
+                @Html.DisplayFor(a => a.CGPA)
+            </td>
+            <td>
+                @Html.DisplayFor(a => a.Interest)
+            </td>
+            <td>
+                @Html.DisplayFor(a => a.Skills)
+            </td>
+        </tr>
+    </thead>
+</table>
+
+
