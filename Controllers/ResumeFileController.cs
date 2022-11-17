@@ -57,13 +57,13 @@ namespace ResumeDetails.Controllers
         public  IActionResult FileUpload(IFormFile file, Resume ResumeDatas)
         {
 
-            if (file == null || file.Length == 0)
+            if (file == null)
                 return Content("file not selected");
 
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Resume_Datas",
+            var path = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot\\Resume_Datas",
                         file.FileName);
 
-            using (var stream = new FileStream(path, FileMode.Create))
+            using (var stream = new FileStream(path,FileMode.Create))
             {
                  file.CopyToAsync(stream);
             }
@@ -76,13 +76,12 @@ namespace ResumeDetails.Controllers
                 {
                     while (reader.Read()) //Each row of the file
                     {
-                        ResumeDatas.FullName=(reader.GetValue(0) != null )?reader.GetValue(0).ToString():"";                        
+                       ResumeDatas.FullName=(reader.GetValue(0) != null )?reader.GetValue(0).ToString():"";
                         ResumeDatas.sslc =(reader.GetValue(1)!=null)?  reader.GetValue(1).ToString():"";
                         ResumeDatas.Hsc = (reader.GetValue(2)!=null)?  reader.GetValue(2).ToString():"";
                         ResumeDatas.CGPA =(reader.GetValue(3)!= null)? reader.GetValue(3).ToString() : "";
-                        ResumeDatas.Interest=(reader.GetValue(4)!= null)? reader.GetValue(4).ToString() : "";
-                        ResumeDatas.Skills =(reader.GetValue(5) != null) ? reader.GetValue(5).ToString() : "";
-                        
+                        ResumeDatas.Interest=(reader.GetValue(4)!= null)? reader.GetValue(4).ToString():"";
+                        ResumeDatas.Skills =(reader.GetValue(5) != null) ? reader.GetValue(5).ToString():"";
                     }
                     if (ResumeDatas.FullName != "")
                     {   // Check Name is Number or not.
@@ -171,12 +170,12 @@ namespace ResumeDetails.Controllers
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Resume_Datas", filename);
 
             var memory = new MemoryStream();
+            // After Download the files and show the datas in Excel
             using (var stream = new FileStream(path, FileMode.Open))
             {
                 await stream.CopyToAsync(memory);
             }
             memory.Position = 0;
-
             return File(memory, GetContentType(path), Path.GetFileName(path));
         }
         private string GetContentType(string path)

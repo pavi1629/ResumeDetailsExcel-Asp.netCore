@@ -20,10 +20,11 @@
     }
 
     body {
-        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-1Ank9MKck-guxvJpgyLhM-FNIiDWAE0DNQ&usqp=CAU');
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_9ItX5c4IyjuVOG8X7YDrMdairAPkzZ_ZywtXfI1RE-tKLXbDy2T9sWaXKCYlWmtDxU&usqp=CAU');
+        opacity: 0.9;    
         background-size: cover;
         background-repeat: no-repeat;
-    }
+     }
 
     .error {
         color: red;
@@ -57,7 +58,7 @@
             <div>
                 <h3>Name<span class="required">*</span></h3>
                 <i class="fa fa-user" style="font-size:20px;"></i>
-                @Html.TextBoxFor(a=>a.Name,new{ placeholder="Name",maxlength="15",style="border:none;width:50%",pattern="[a-zA-Z ]{1,15}"})
+                @Html.TextBoxFor(a=>a.Name,new{ placeholder="Name",pattern="[a-zA-Z ]{1,15}",maxlength="15",style="border:none;width:50%"})
                 <hr style="width:100%;text-align:left;margin-left:0">
             </div>
             <div>
@@ -71,7 +72,7 @@
                 <i class="fa fa-venus-double" style="font-size:24px"></i>
                 @Html.RadioButtonFor(a => a.Gender,"Male")Male
                 @Html.RadioButtonFor(a => a.Gender,"Female")Female
-                @Html.RadioButtonFor(a => a.Gender,"Others")Others
+                @Html.RadioButtonFor(a => a.Gender,"Others",new{name="gender"})Others
             </div>
             <div>
                 <h3><label>Email<span class="required">*</span></label></h3>
@@ -86,7 +87,7 @@
                 <hr style="width:100%;text-align:left;margin-left:0">
             </div>
             <div>
-            <h4>Upload ExcelFile</h4>
+                <h4>Upload ExcelFile<span class="required">*</span></h4>
             <input type="file" name="file" />
             </div>
             <div class="Error">
@@ -105,7 +106,9 @@
     }
 </body>
 @*<form asp-controller="ResumeFile" asp-action="UploadFile" method="post"
-j    <input type="file" name="file" />
+
+
+    <input type="file" name="file" />
     <button type="submit">Upload File</button>
 </form>*@
 <script>
@@ -116,9 +119,8 @@ j    <input type="file" name="file" />
             rules: {
                 Name: {
                     required: true
-                    //lettersonly: true
+                    //lettersonly: true,
                     //maxlength: 15
-                    // required: true,
                     //pattern: '^[a-zA-Z][a-zA-Z\\s]+$',
                 },
 
@@ -139,15 +141,14 @@ j    <input type="file" name="file" />
                     required: true,
                     extension: "xlsx|xls|xlsm"
                 }
-
+                
             },
             // in 'messages' user have to specify message as per rules
             messages: {
                 Name: {
-                    required: " Kindly enter Name",
-                    //lettersonly: " Only alphabets are valid"
-                    //maxlength: " Must Not Exceed 15"
-                    // required: " Kindly enter Name",
+                    required: " Kindly enter Name"
+                    //lettersonly: " Only alphabets are valid",
+                    //maxlength: " Must Not Exceed 15"                    
                     //pattern: "only enter alphabets",
                 },
 
