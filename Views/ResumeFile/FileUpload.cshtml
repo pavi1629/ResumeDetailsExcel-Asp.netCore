@@ -57,7 +57,7 @@
             <div>
                 <h3>Name<span class="required">*</span></h3>
                 <i class="fa fa-user" style="font-size:20px;"></i>
-                @Html.TextBoxFor(a=>a.Name,new{ placeholder="Name",maxlength="15",style="border:none;width:50%"})
+                @Html.TextBoxFor(a=>a.Name,new{ placeholder="Name",maxlength="15",style="border:none;width:50%",pattern="[a-zA-Z ]{1,15}"})
                 <hr style="width:100%;text-align:left;margin-left:0">
             </div>
             <div>
@@ -105,9 +105,7 @@
     }
 </body>
 @*<form asp-controller="ResumeFile" asp-action="UploadFile" method="post"
-
-
-    <input type="file" name="file" />
+j    <input type="file" name="file" />
     <button type="submit">Upload File</button>
 </form>*@
 <script>
@@ -117,11 +115,11 @@
             // in 'rules' user have to specify all the constraints for respective fields
             rules: {
                 Name: {
-                    //required: true,
-                    //lettersonly: true,
+                    required: true
+                    //lettersonly: true
                     //maxlength: 15
-                     required: true,
-                    pattern: '^[a-zA-Z][a-zA-Z\\s]+$',
+                    // required: true,
+                    //pattern: '^[a-zA-Z][a-zA-Z\\s]+$',
                 },
 
                 Age: {
@@ -146,11 +144,11 @@
             // in 'messages' user have to specify message as per rules
             messages: {
                 Name: {
-                    //required: " Kindly enter Name",
-                    //lettersonly: " Only alphabets are valid",
+                    required: " Kindly enter Name",
+                    //lettersonly: " Only alphabets are valid"
                     //maxlength: " Must Not Exceed 15"
-                     required: " Kindly enter Name",
-                    pattern: "only enter alphabets",
+                    // required: " Kindly enter Name",
+                    //pattern: "only enter alphabets",
                 },
 
                 Age: {

@@ -77,10 +77,10 @@ namespace ResumeDetails.Controllers
                     while (reader.Read()) //Each row of the file
                     {
                         ResumeDatas.FullName=(reader.GetValue(0) != null )?reader.GetValue(0).ToString():"";                        
-                        ResumeDatas.sslc = (reader.GetValue(1)!=null)?  reader.GetValue(1).ToString():"";
-                        ResumeDatas.Hsc =  (reader.GetValue(2)!=null)?  reader.GetValue(2).ToString():"";
-                        ResumeDatas.CGPA =(reader.GetValue(3) != null) ? reader.GetValue(3).ToString() : "";
-                        ResumeDatas.Interest = (reader.GetValue(4) != null) ? reader.GetValue(4).ToString() : "";
+                        ResumeDatas.sslc =(reader.GetValue(1)!=null)?  reader.GetValue(1).ToString():"";
+                        ResumeDatas.Hsc = (reader.GetValue(2)!=null)?  reader.GetValue(2).ToString():"";
+                        ResumeDatas.CGPA =(reader.GetValue(3)!= null)? reader.GetValue(3).ToString() : "";
+                        ResumeDatas.Interest=(reader.GetValue(4)!= null)? reader.GetValue(4).ToString() : "";
                         ResumeDatas.Skills =(reader.GetValue(5) != null) ? reader.GetValue(5).ToString() : "";
                         
                     }
